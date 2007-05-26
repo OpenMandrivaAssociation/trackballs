@@ -1,6 +1,6 @@
 %define name trackballs
-%define version 1.1.2
-%define release %mkrel 2
+%define version 1.1.4
+%define release %mkrel 1
 %define title Trackballs
 %define longtitle A Marble Madness-like game
 
@@ -16,10 +16,7 @@ Source0: http://prdownloads.sourceforge.net/trackballs/%{name}-%{version}.tar.bz
 Source1: %{name}-16.png
 Source2: %{name}-32.png
 Source3: %{name}-48.png
-#already included
-#Source4: http://prdownloads.sourceforge.net/trackballs/atilla-child.tar.bz2
-#Source5: http://prdownloads.sourceforge.net/trackballs/BoxOFun.tar.bz2
-Patch: trackballs-1.1.2-install.patch
+Patch: trackballs-1.1.4-desktop.patch
 BuildRequires: guile-devel >= 1.6
 BuildRequires: SDL_ttf-devel
 BuildRequires: SDL_mixer-devel
@@ -48,8 +45,7 @@ All is explained in the docs.
 
 %prep
 %setup -q
-%patch -p0
-#tar xvjf %{SOURCE4} -C share/levels
+%patch -p1
 
 %build
 export LDFLAGS=-L%{_prefix}/X11R6/%_lib
@@ -60,7 +56,7 @@ export LDFLAGS=-L%{_prefix}/X11R6/%_lib
 
 %install
 rm -rf %{buildroot}
-%makeinstall_std MKINSTALLDIRS=`pwd`/mkinstalldirs
+%makeinstall_std MKINSTALLDIRS=`pwd`/mkinstalldirs iconsdir=%buildroot%_datadir/icons/hicolor
 
 # icons
 install -D -m 644 %{SOURCE1} %{buildroot}%{_miconsdir}/%{name}.png
@@ -80,32 +76,20 @@ longtitle="%{longtitle}" \
 xdg="true"
 EOF
 
-install -d -m 755 %{buildroot}%{_datadir}/applications
-cat >  %{buildroot}%{_datadir}/applications/mandriva-%{name}.desktop << EOF
-[Desktop Entry]
-Encoding=UTF-8
-Name=%{title}
-Comment=%{longtitle}
-Exec=%{_gamesbindir}/%{name}
-Icon=%{name}
-Terminal=false
-Type=Application
-StartupNotify=false
-Categories=Game;ArcadeGame;X-MandrivaLinux-MoreApplications-Games-Arcade;
-EOF
+mv %buildroot%_datadir/games/{locale,applications} %buildroot%_datadir
 
 %find_lang  %name
 
 %files -f %name.lang
 %defattr(-,root,root)
-%doc AUTHORS ChangeLog COPYING FAQ INSTALL README TODO README.html
+%doc AUTHORS ChangeLog COPYING FAQ INSTALL README TODO
+%doc docs/*html
 %attr(2755,root,games) %{_gamesbindir}/%{name}
-%dir %{_localstatedir}/%{name}/
-%attr(0664,root,games) %{_localstatedir}/%{name}/highScores
 %{_gamesdatadir}/%{name}
 %{_mandir}/man6/%{name}.6.bz2
 %{_menudir}/%{name}
-%{_datadir}/applications/mandriva-%{name}.desktop
+%_datadir/icons/hicolor/*/apps/*.*
+%{_datadir}/applications/%{name}.desktop
 %{_iconsdir}/%{name}.png
 %{_miconsdir}/%{name}.png
 %{_liconsdir}/%{name}.png
@@ -115,9 +99,10 @@ rm -rf %{buildroot}
 
 %post
 %{update_menus}
+%update_icon_cache hicolor
 
 %postun
 %{clean_menus}
-
+%clean_icon_cache hicolor
 
 
