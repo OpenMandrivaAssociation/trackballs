@@ -86,7 +86,7 @@ mv %buildroot%_datadir/games/{locale,applications} %buildroot%_datadir
 %doc docs/*html
 %attr(2755,root,games) %{_gamesbindir}/%{name}
 %{_gamesdatadir}/%{name}
-%{_mandir}/man6/%{name}.6.bz2
+%{_mandir}/man6/%{name}.*
 %{_menudir}/%{name}
 %_datadir/icons/hicolor/*/apps/*.*
 %{_datadir}/applications/%{name}.desktop
