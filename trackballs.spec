@@ -22,6 +22,7 @@ BuildRequires: SDL_ttf-devel
 BuildRequires: SDL_mixer-devel
 BuildRequires: SDL_image-devel
 BuildRequires: mesaglu-devel
+BuildRoot: %{_tmppath}/%{name}-%{version}
 
 %description
 Trackballs is a simple game similar to the
