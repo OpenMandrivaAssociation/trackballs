@@ -64,17 +64,6 @@ install -D -m 644 %{SOURCE2} %{buildroot}%{_iconsdir}/%{name}.png
 install -D -m 644 %{SOURCE3} %{buildroot}%{_liconsdir}/%{name}.png 
 
 # menu
-install -d -m 755 %{buildroot}%{_menudir}
-cat >%{buildroot}%{_menudir}/%{name} <<EOF
-?package(%{name}): \
-command="%{_gamesbindir}/%{name}" \
-needs="X11" \
-section="More Applications/Games/Arcade" \
-icon="%{name}.png" \
-title="%{title}" \
-longtitle="%{longtitle}" \
-xdg="true"
-EOF
 
 mv %buildroot%_datadir/games/{locale,applications} %buildroot%_datadir
 
@@ -87,7 +76,6 @@ mv %buildroot%_datadir/games/{locale,applications} %buildroot%_datadir
 %attr(2755,root,games) %{_gamesbindir}/%{name}
 %{_gamesdatadir}/%{name}
 %{_mandir}/man6/%{name}.*
-%{_menudir}/%{name}
 %_datadir/icons/hicolor/*/apps/*.*
 %{_datadir}/applications/%{name}.desktop
 %{_iconsdir}/%{name}.png
