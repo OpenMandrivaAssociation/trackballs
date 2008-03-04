@@ -1,6 +1,6 @@
 %define name trackballs
 %define version 1.1.4
-%define release %mkrel 1
+%define release %mkrel 2
 %define title Trackballs
 %define longtitle A Marble Madness-like game
 
@@ -16,6 +16,7 @@ Source0: http://prdownloads.sourceforge.net/trackballs/%{name}-%{version}.tar.bz
 Source1: %{name}-16.png
 Source2: %{name}-32.png
 Source3: %{name}-48.png
+Source4: http://prdownloads.sourceforge.net/trackballs/SixLevels.tar.gz
 Patch: trackballs-1.1.4-desktop.patch
 BuildRequires: guile-devel >= 1.6
 BuildRequires: SDL_ttf-devel
@@ -46,6 +47,8 @@ All is explained in the docs.
 %prep
 %setup -q
 %patch -p1
+#extract additionnal levels in data/levels
+tar -xvzf %{SOURCE4} -C data/levels
 
 %build
 export LDFLAGS=-L%{_prefix}/X11R6/%_lib
