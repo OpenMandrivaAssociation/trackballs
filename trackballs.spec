@@ -53,7 +53,7 @@ tar -xvzf %{SOURCE4} -C share/levels
 export LDFLAGS=-L%{_prefix}/X11R6/%_lib
 %configure2_5x --bindir=%{_gamesbindir} \
   --datadir=%{_gamesdatadir} \
-  --with-highscores=%{_localstatedir}/games/%{name}/highScores
+  --with-highscores=%{_localstatedir}/lib/games/%{name}/highScores
 %make
 
 %install
@@ -83,7 +83,7 @@ mv %buildroot%_datadir/games/{locale,applications} %buildroot%_datadir
 %{_iconsdir}/%{name}.png
 %{_miconsdir}/%{name}.png
 %{_liconsdir}/%{name}.png
-%attr(664, root, games) %ghost %{_localstatedir}/games/%{name}/highScores
+%attr(664, root, games) %ghost %{_localstatedir}/lib/games/%{name}/highScores
 
 %clean
 rm -rf %{buildroot}
@@ -91,7 +91,7 @@ rm -rf %{buildroot}
 %post
 %{update_menus}
 %update_icon_cache hicolor
-%create_ghostfile %{_localstatedir}/games/%{name}/highScores root games 664
+%create_ghostfile %{_localstatedir}/lib/games/%{name}/highScores root games 664
 
 %postun
 %{clean_menus}
