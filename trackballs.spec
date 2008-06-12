@@ -89,11 +89,15 @@ mv %buildroot%_datadir/games/{locale,applications} %buildroot%_datadir
 rm -rf %{buildroot}
 
 %post
+%if %mdkversion < 200900
 %{update_menus}
 %update_icon_cache hicolor
+%endif
 %create_ghostfile %{_localstatedir}/lib/games/%{name}/highScores root games 664
 
+%if %mdkversion < 200900
 %postun
 %{clean_menus}
 %clean_icon_cache hicolor
+%endif
 
