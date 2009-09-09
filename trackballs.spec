@@ -1,6 +1,6 @@
 %define name trackballs
 %define version 1.1.4
-%define release %mkrel 5
+%define release %mkrel 6
 %define title Trackballs
 %define longtitle A Marble Madness-like game
 
