@@ -1,0 +1,12 @@
+--- trackballs-1.1.4/share/icons/trackballs.desktop.in~	2007-04-07 14:46:58.000000000 +0200
++++ trackballs-1.1.4/share/icons/trackballs.desktop.in	2007-05-26 09:57:16.000000000 +0200
+@@ -3,6 +3,6 @@
+ Name=Trackballs
+ Icon=trackballs
+ Type=Application
+-Terminal=0
+-MimeType=application/x-executable
+-Categories=Game;ArcadeGame;
++Terminal=false
++Categories=Game;ArcadeGame;X-MandrivaLinux-MoreApplications-Games-Arcade;
++
