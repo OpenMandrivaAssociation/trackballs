@@ -11,7 +11,7 @@ Summary: A Marble Madness-like game
 Summary(fr): Un jeu inspiré de Marble Madness
 Group: Games/Arcade
 License: GPL
-URL: http://trackballs.sourceforge.net/
+URL: https://trackballs.sourceforge.net/
 Source0: http://prdownloads.sourceforge.net/trackballs/%{name}-%{version}.tar.bz2
 Source1: %{name}-16.png
 Source2: %{name}-32.png
