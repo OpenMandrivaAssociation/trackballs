@@ -18,6 +18,11 @@ Source2: %{name}-32.png
 Source3: %{name}-48.png
 Source4: http://prdownloads.sourceforge.net/trackballs/SixLevels.tar.gz
 Patch: trackballs-1.1.4-desktop.patch
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires: guile-devel >= 1.6
 BuildRequires: SDL_ttf-devel
 BuildRequires: SDL_mixer-devel
